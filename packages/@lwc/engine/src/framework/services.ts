@@ -25,13 +25,12 @@ interface ServiceDef {
 }
 
 export const Services: {
-    wiring?: ServiceCallback[];
     connected?: ServiceCallback[];
     disconnected?: ServiceCallback[];
     rendered?: ServiceCallback[];
 } = create(null);
 
-const hooks: Array<keyof ServiceDef> = ['wiring', 'rendered', 'connected', 'disconnected'];
+const hooks: Array<keyof ServiceDef> = ['rendered', 'connected', 'disconnected'];
 
 /**
  * EXPERIMENTAL: This function allows for the registration of "services"
