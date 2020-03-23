@@ -185,9 +185,9 @@ type DataCallback = (value: any) => void;
 type ConfigValue = Record<string, any>;
 
 interface WireAdapter {
-    update(config: ConfigValue, context?: ContextValue);
-    connect();
-    disconnect();
+    update(config: ConfigValue, context?: ContextValue): void;
+    connect(): void;
+    disconnect(): void;
 }
 
 type WireAdapterSchemaValue = 'optional' | 'required';

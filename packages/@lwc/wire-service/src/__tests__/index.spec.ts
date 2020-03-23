@@ -152,12 +152,10 @@ describe('WireEventTarget from register', () => {
                 },
             });
 
-            wireEventTarget!.dispatchEvent(wireContextEvent);
             wireEventTarget!.dispatchEvent(wireContextEventInLowercase);
 
-            expect(wiredElementMock.dispatchEvent).toHaveBeenCalledTimes(2);
-            expect(wiredElementMock.dispatchEvent.mock.calls[0][0]).toBe(wireContextEvent);
-            expect(wiredElementMock.dispatchEvent.mock.calls[1][0]).toBe(
+            expect(wiredElementMock.dispatchEvent).toHaveBeenCalledTimes(1);
+            expect(wiredElementMock.dispatchEvent.mock.calls[0][0]).toBe(
                 wireContextEventInLowercase
             );
         });

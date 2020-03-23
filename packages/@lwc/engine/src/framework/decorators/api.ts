@@ -14,7 +14,7 @@ import {
     ReactiveObserver,
 } from '../mutation-tracker';
 import { ComponentInterface } from '../component';
-import { getAssociatedVM, rerenderVM } from '../vm';
+import { getAssociatedVM, rerenderVM, VM } from '../vm';
 import { addCallbackToNextTick } from '../utils';
 import { isUpdatingTemplate, getVMBeingRendered } from '../template';
 
@@ -23,7 +23,7 @@ import { isUpdatingTemplate, getVMBeingRendered } from '../template';
  * LWC Components. This function implements the internals of this
  * decorator.
  */
-export default function api(target: any, propertyKey: string, descriptor: PropertyDescriptor);
+export default function api(target: any, propertyKey: string, descriptor: PropertyDescriptor): void;
 export default function api() {
     if (process.env.NODE_ENV !== 'production') {
         assert.fail(`@api decorator can only be used as a decorator function.`);

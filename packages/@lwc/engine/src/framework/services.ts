@@ -18,7 +18,6 @@ type ServiceCallback = (
     context: Context
 ) => void;
 interface ServiceDef {
-    wiring?: ServiceCallback;
     connected?: ServiceCallback;
     disconnected?: ServiceCallback;
     rendered?: ServiceCallback;

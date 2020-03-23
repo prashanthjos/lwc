@@ -82,7 +82,10 @@ function removeListener(listeners: WireEventTargetListener[], toRemove: WireEven
     }
 }
 
-type dataCallback = (value: any) => void;
+interface dataCallback {
+    (value: any): void;
+    [DeprecatedWiredElementHost]: any;
+}
 export interface WireAdapterConstructor {
     new (callback: dataCallback): WireAdapter;
 }

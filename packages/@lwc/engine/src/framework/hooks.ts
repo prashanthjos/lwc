@@ -25,11 +25,7 @@ import modComputedStyle from './modules/computed-style-attr';
 import modStaticClassName from './modules/static-class-attr';
 import modStaticStyle from './modules/static-style-attr';
 import { updateDynamicChildren, updateStaticChildren } from '../3rdparty/snabbdom/snabbdom';
-import {
-    patchElementWithRestrictions,
-    unlockDomMutation,
-    lockDomMutation,
-} from './restrictions';
+import { patchElementWithRestrictions, unlockDomMutation, lockDomMutation } from './restrictions';
 import { getComponentInternalDef, setElementProto } from './def';
 
 const noop = () => void 0;

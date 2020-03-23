@@ -17,7 +17,11 @@ import { isUpdatingTemplate, getVMBeingRendered } from '../template';
  * LWC Components. This function can also be invoked directly
  * with any value to obtain the trackable version of the value.
  */
-export default function track(target: any, propertyKey: string, descriptor: PropertyDescriptor);
+export default function track(
+    target: any,
+    propertyKey: string,
+    descriptor: PropertyDescriptor
+): any;
 export default function track(target: any): any {
     if (arguments.length === 1) {
         return reactiveMembrane.getProxy(target);

@@ -17,9 +17,7 @@ interface ContextConsumer {
     provide(newContext: ContextValue): void;
 }
 
-interface WireContextEvent extends CustomEvent {
-    detail: WireContextInternalProtocolCallback;
-}
+interface WireContextEvent extends CustomEvent<WireContextInternalProtocolCallback> {}
 
 interface ContextProviderOptions {
     consumerConnectedCallback: (consumer: ContextConsumer) => void;
@@ -34,26 +32,32 @@ export function createContextProvider(adapter: WireAdapterConstructor) {
     }
     adapterContextToken = guid();
     setAdapterToken(adapter, adapterContextToken);
-    const providers = [];
+    const providers: EventTarget[] = [];
+
     return (elm: EventTarget, options: ContextProviderOptions) => {
         if (ArrayIndexOf.call(providers, elm) !== -1) {
             throw new Error(`Adapter was already installed on ${elm}.`);
         }
+        providers.push(elm);
+
         const { consumerConnectedCallback, consumerDisconnectedCallback } = options;
-        elm.addEventListener(adapterContextToken as string, (evt: WireContextEvent) => {
-            const { detail } = evt;
-            const consumer: ContextConsumer = {
-                provide(newContext) {
-                    detail(newContext, disconnectCallback);
-                },
-            };
-            const disconnectCallback = () => {
-                if (!isUndefined(consumerDisconnectedCallback)) {
-                    consumerDisconnectedCallback(consumer);
-                }
-            };
-            consumerConnectedCallback(consumer);
-            evt.stopImmediatePropagation();
-        });
+        elm.addEventListener(
+            adapterContextToken as string,
+            ((evt: WireContextEvent) => {
+                const { detail } = evt;
+                const consumer: ContextConsumer = {
+                    provide(newContext) {
+                        detail(newContext, disconnectCallback);
+                    },
+                };
+                const disconnectCallback = () => {
+                    if (!isUndefined(consumerDisconnectedCallback)) {
+                        consumerDisconnectedCallback(consumer);
+                    }
+                };
+                consumerConnectedCallback(consumer);
+                evt.stopImmediatePropagation();
+            }) as EventListener
+        );
     };
 }
