@@ -13,7 +13,7 @@ module.exports = function (config, callback) {
         .then(() => {
             callback(null, { config, pid: `${process.pid}` });
         })
-        .catch((err) => {
+        .catch(err => {
             callback(err);
         });
 };

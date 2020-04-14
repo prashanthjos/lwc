@@ -13,7 +13,7 @@ const observerConfig = { childList: true, subtree: true };
  **/
 
 function waitForMutationObservedToBeInvoked() {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
         setTimeout(resolve);
     });
 }
@@ -31,7 +31,7 @@ describe('MutationObserver is synthetic shadow dom aware.', () => {
             globalObserver.observe(container, observerConfig);
         });
 
-        it('global observer should be called 1 time, when the host element is attached to document', (done) => {
+        it('global observer should be called 1 time, when the host element is attached to document', done => {
             // Prepare body for new lwc element
             const host = createElement('x-parent', { is: XParent });
             const container = document.createElement('div');
@@ -90,7 +90,7 @@ describe('MutationObserver is synthetic shadow dom aware.', () => {
             });
         });
 
-        it('should invoke observer on parent when slotted content is altered', (done) => {
+        it('should invoke observer on parent when slotted content is altered', done => {
             const parent = createElement('x-slotted-child', { is: XSlottedChild });
             container.appendChild(parent);
             const slottedDiv = parent.shadowRoot.querySelector('div.manual');
@@ -125,7 +125,7 @@ describe('MutationObserver is synthetic shadow dom aware.', () => {
             });
         });
 
-        it('should invoke observer on slot content owner', (done) => {
+        it('should invoke observer on slot content owner', done => {
             const parent = createElement('x-nested-slot-container', { is: XNestedSlotContainer });
             container.appendChild(parent);
             const slottedDiv = parent.shadowRoot.querySelector('div.manual');
@@ -195,7 +195,7 @@ describe('MutationObserver is synthetic shadow dom aware.', () => {
         it('should invoke observer with correct MutationRecords when adding child nodes using appendChild', () => {
             const parent = createElement('x-parent', { is: XParent });
             container.appendChild(parent);
-            return new Promise((resolve) => {
+            return new Promise(resolve => {
                 let observer;
                 const parentDiv = parent.shadowRoot.querySelector('div');
                 const callback = function (actualMutationRecords, actualObserver) {
@@ -213,7 +213,7 @@ describe('MutationObserver is synthetic shadow dom aware.', () => {
             }).then(() => {
                 const childElm = parent.shadowRoot.querySelector('x-child');
                 const childDiv = childElm.shadowRoot.querySelector('div');
-                const promise = new Promise((resolve) => {
+                const promise = new Promise(resolve => {
                     const callback = function (actualMutationRecords) {
                         expect(actualMutationRecords.length).toBe(2);
                         expect(actualMutationRecords[0].target).toBe(childDiv);
@@ -233,7 +233,7 @@ describe('MutationObserver is synthetic shadow dom aware.', () => {
             });
         });
 
-        it('should invoke observer with correct MutationRecords when adding child nodes using innerHTML', (done) => {
+        it('should invoke observer with correct MutationRecords when adding child nodes using innerHTML', done => {
             const parent = createElement('x-parent', { is: XParent });
             container.appendChild(parent);
             let observer;
@@ -253,7 +253,7 @@ describe('MutationObserver is synthetic shadow dom aware.', () => {
             parentDiv.innerHTML = `<h3></h3><p></p>`;
         });
 
-        it('should invoke observer with correct MutationRecords when removing child nodes using innerHTML', (done) => {
+        it('should invoke observer with correct MutationRecords when removing child nodes using innerHTML', done => {
             const parent = createElement('x-parent', { is: XParent });
             container.appendChild(parent);
             const parentDiv = parent.shadowRoot.querySelector('div');
@@ -330,10 +330,10 @@ describe('MutationObserver is synthetic shadow dom aware.', () => {
             container.appendChild(parent);
             let firstObserverCallback;
             let secondObserverCallback;
-            const promise1 = new Promise((resolve) => {
+            const promise1 = new Promise(resolve => {
                 firstObserverCallback = resolve;
             });
-            const promise2 = new Promise((resolve) => {
+            const promise2 = new Promise(resolve => {
                 secondObserverCallback = resolve;
             });
             const parentDiv = parent.shadowRoot.querySelector('div');
@@ -368,7 +368,7 @@ describe('MutationObserver is synthetic shadow dom aware.', () => {
             return Promise.all([promise1, promise2]);
         });
 
-        it('should retarget MutationRecord for mutations directly under shadowRoot - added nodes', (done) => {
+        it('should retarget MutationRecord for mutations directly under shadowRoot - added nodes', done => {
             const host = createElement('x-template-mutations', { is: XTemplateMutations });
             container.appendChild(host);
 
@@ -399,7 +399,7 @@ describe('MutationObserver is synthetic shadow dom aware.', () => {
             });
         });
 
-        it('should retarget MutationRecord for mutations directly under shadowRoot - removed nodes', (done) => {
+        it('should retarget MutationRecord for mutations directly under shadowRoot - removed nodes', done => {
             const host = createElement('x-template-mutations', { is: XTemplateMutations });
             container.appendChild(host);
 

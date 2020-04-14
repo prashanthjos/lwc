@@ -43,7 +43,7 @@ describe('sequential focus navigation coverage', () => {
             // 'svgAnchorXlinkHref', // a[xlink:href] should only be focusable when inside <svg>
             'textarea',
             'videoControls',
-        ].forEach((type) => {
+        ].forEach(type => {
             it(type, () => {
                 // Click and focus on the first input
                 const start = browser.$(function () {

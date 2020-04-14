@@ -10,7 +10,7 @@ function testDispatchEvent(type, name, dispatchedEvent) {
         const elm = createElement('x-test', { is: Test });
         document.body.appendChild(elm);
 
-        elm.addEventListener(name, (event) => {
+        elm.addEventListener(name, event => {
             receivedEvent = event;
         });
         elm.dispatch(dispatchedEvent);

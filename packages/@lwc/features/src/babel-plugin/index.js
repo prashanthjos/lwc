@@ -35,7 +35,7 @@ module.exports = function ({ types: t }) {
                     const specifiers = path.node.specifiers;
 
                     // Check if we've already imported runtime flags
-                    const didImportRuntimeFlags = specifiers.some((specifier) => {
+                    const didImportRuntimeFlags = specifiers.some(specifier => {
                         return specifier.local && specifier.local.name === RUNTIME_FLAGS_IDENTIFIER;
                     });
                     if (didImportRuntimeFlags && !this.opts.prod) {

@@ -9,7 +9,7 @@ import { createElement, LightningElement } from '../main';
 import { compileTemplate } from 'test-utils';
 
 function resetServices() {
-    Object.keys(target.Services).forEach((name) => {
+    Object.keys(target.Services).forEach(name => {
         delete target.Services[name];
     });
 }

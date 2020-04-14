@@ -64,7 +64,7 @@ describe('global HTML Properties', () => {
         { prop: 'title', value: 'title' },
     ];
 
-    cases.forEach((testCase) => {
+    cases.forEach(testCase => {
         const { prop, value } = testCase;
         describe(`#${prop}`, () => {
             if (prop !== 'hidden') {

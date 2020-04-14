@@ -28,7 +28,7 @@ it('parent should receive composed event with correct target', function () {
 
 describe('event.target on document event listener', () => {
     let actual;
-    const listener = (evt) => {
+    const listener = evt => {
         actual = evt.target.tagName.toLowerCase();
     };
     beforeAll(() => {
@@ -61,8 +61,8 @@ describe('should not retarget event', () => {
             child = elm.shadowRoot.querySelector('x-child-with-out-lwc-dom-manual');
             originalTarget = child.shadowRoot.querySelector('span');
         });
-        it('when original target node is not keyed and event is accessed async (W-6586380)', (done) => {
-            elm.eventListener = (evt) => {
+        it('when original target node is not keyed and event is accessed async (W-6586380)', done => {
+            elm.eventListener = evt => {
                 expect(evt.currentTarget).toBe(elm.shadowRoot.querySelector('div'));
                 expect(evt.target).toBe(child);
                 setTimeout(() => {
@@ -78,7 +78,7 @@ describe('should not retarget event', () => {
         describe('received at a global listener', () => {
             let actualCurrentTarget;
             let actualTarget;
-            const globalListener = (evt) => {
+            const globalListener = evt => {
                 actualCurrentTarget = evt.currentTarget;
                 actualTarget = evt.target;
             };

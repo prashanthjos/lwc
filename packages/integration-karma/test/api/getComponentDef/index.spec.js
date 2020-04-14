@@ -16,13 +16,13 @@ function testInvalidComponentConstructor(name, ctor) {
 }
 
 beforeAll(function () {
-    const getNormalizedFunctionAsString = (fn) => fn.toString().replace(/(\s|\n)/g, '');
+    const getNormalizedFunctionAsString = fn => fn.toString().replace(/(\s|\n)/g, '');
 
     jasmine.addMatchers({
         toEqualWireSettings: function () {
             return {
                 compare: function (actual, expected) {
-                    Object.keys(actual).forEach((currentKey) => {
+                    Object.keys(actual).forEach(currentKey => {
                         const normalizedActual = Object.assign({}, actual[currentKey], {
                             config: getNormalizedFunctionAsString(actual[currentKey].config),
                         });

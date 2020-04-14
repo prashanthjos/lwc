@@ -101,7 +101,7 @@ if (process.env.NATIVE_SHADOW) {
         document.body.appendChild(elm);
 
         return Promise.resolve().then(() => {
-            const styles = Array.from(elm.shadowRoot.querySelectorAll('x-simple')).map((xSimple) =>
+            const styles = Array.from(elm.shadowRoot.querySelectorAll('x-simple')).map(xSimple =>
                 xSimple.shadowRoot.querySelector('style')
             );
 

@@ -691,7 +691,7 @@ describe('Events on Custom Elements', () => {
                     div.dispatchEvent(new CustomEvent('foo', { bubbles: true, composed: true }));
                 });
 
-                this.template.addEventListener('foo', (evt) => {
+                this.template.addEventListener('foo', evt => {
                     expect(evt.target).toBe(this.template.querySelector('div'));
                 });
             }
@@ -766,7 +766,7 @@ describe('Component events', () => {
                 this.addEventListener('click', () => {
                     this.dispatchEvent(new CustomEvent('foo'));
                 });
-                this.addEventListener('foo', (evt) => {
+                this.addEventListener('foo', evt => {
                     expect(evt.target).toBe(elm);
                 });
             }
@@ -795,7 +795,7 @@ describe('Component events', () => {
         // expect().toThrowError() is not enough in the case where an Error is thrown during event
         // dispatching. In the case of event, the only way to catch the error to add an event listener
         // at the page level.
-        const errorHandler = jest.fn((evt) => evt.preventDefault());
+        const errorHandler = jest.fn(evt => evt.preventDefault());
         window.addEventListener('error', errorHandler);
 
         const buttonEl = element.shadowRoot.querySelector('button');
@@ -821,7 +821,7 @@ describe('Shadow Root events', () => {
         `);
         class MyComponent extends LightningElement {
             connectedCallback() {
-                this.template.addEventListener('click', (evt) => {
+                this.template.addEventListener('click', evt => {
                     expect(evt.target).toBe(this.template.querySelector('div'));
                 });
             }
@@ -984,7 +984,7 @@ describe('Shadow Root events', () => {
         );
         class Child extends LightningElement {
             connectedCallback() {
-                this.template.addEventListener('click', (evt) => {
+                this.template.addEventListener('click', evt => {
                     expect(evt.target.tagName).toBe('X-GRAND-CHILD');
                     expect(evt.currentTarget).toBe(this.template);
                 });

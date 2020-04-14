@@ -27,26 +27,26 @@ describe('Testing array primitives', () => {
         });
     }
 
-    testReactivity('slice', ['one', 'three', 'four', 'five'], (elm) => {
+    testReactivity('slice', ['one', 'three', 'four', 'five'], elm => {
         elm.spliceItems();
     });
-    testReactivity('unshift', ['unshifted', 'one', 'two', 'three', 'four', 'five'], (elm) => {
+    testReactivity('unshift', ['unshifted', 'one', 'two', 'three', 'four', 'five'], elm => {
         elm.unshiftItem();
     });
-    testReactivity('push', ['one', 'two', 'three', 'four', 'five', 'pushed'], (elm) => {
+    testReactivity('push', ['one', 'two', 'three', 'four', 'five', 'pushed'], elm => {
         elm.pushItem();
     });
     testReactivity(
         'concat native to proxy',
         ['one', 'two', 'three', 'four', 'five', 'concat 1', 'concat 2'],
-        (elm) => {
+        elm => {
             elm.concatNativeToProxy();
         }
     );
     testReactivity(
         'concat proxy to native',
         ['concat 1', 'concat 2', 'one', 'two', 'three', 'four', 'five'],
-        (elm) => {
+        elm => {
             elm.concatProxyToNative();
         }
     );

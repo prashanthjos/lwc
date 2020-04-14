@@ -106,11 +106,11 @@ async function run() {
         throw new Error('You must provide at least a path');
     }
 
-    const absPaths = customPaths.map((p) => path.resolve(cwd, p));
+    const absPaths = customPaths.map(p => path.resolve(cwd, p));
     const pkgs = absPaths.reduce((l, p) => {
         const dirs = fs.readdirSync(p);
-        const filtered = dirs.filter((d) => !d.startsWith('.') && !d.startsWith('@'));
-        const map = filtered.map((f) => ({ name: f, dir: path.dirname(path.join(p, f)) }));
+        const filtered = dirs.filter(d => !d.startsWith('.') && !d.startsWith('@'));
+        const map = filtered.map(f => ({ name: f, dir: path.dirname(path.join(p, f)) }));
         return [...l, ...map];
     }, []);
 
@@ -134,9 +134,9 @@ async function run() {
             pkgJson.version = `${version}-canary+${sha}`;
 
             // Rewrite dependencies
-            ['dependencies', 'devDependencies'].forEach((key) => {
+            ['dependencies', 'devDependencies'].forEach(key => {
                 if (pkgJson[key]) {
-                    Object.keys(pkgJson[key]).forEach((dep) => {
+                    Object.keys(pkgJson[key]).forEach(dep => {
                         if (PACKAGE_DEPENDENCIES.has(dep)) {
                             pkgJson[key][dep] = HOST + '/' + generateUrl(dep, sha);
                         }

@@ -108,7 +108,7 @@ class Store {
     }
 
     delete(id) {
-        const idx = this.data.findIndex((d) => d.id == id);
+        const idx = this.data.findIndex(d => d.id == id);
         this.data.splice(idx, 1);
     }
 

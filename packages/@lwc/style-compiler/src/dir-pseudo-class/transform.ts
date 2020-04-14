@@ -13,9 +13,9 @@ function isValidDirValue(value: string): boolean {
 }
 
 export default function (root: Root) {
-    root.nodes.forEach((node) => {
+    root.nodes.forEach(node => {
         const selector = node as Selector;
-        selector.nodes.forEach((node) => {
+        selector.nodes.forEach(node => {
             if (!isDirPseudoClass(node)) {
                 return;
             }

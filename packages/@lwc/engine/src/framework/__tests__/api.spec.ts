@@ -100,7 +100,7 @@ describe('api', () => {
 
         it('should handle arrays', function () {
             const o = [1, 2];
-            const vnodes = api.i(o, (item) => item + 'a');
+            const vnodes = api.i(o, item => item + 'a');
             expect(vnodes).toEqual(['1a', '2a']);
         });
 
@@ -108,7 +108,7 @@ describe('api', () => {
             const o = new Set();
             o.add(1);
             o.add(2);
-            const vnodes = api.i(o, (item) => item + 'a');
+            const vnodes = api.i(o, item => item + 'a');
             expect(vnodes).toEqual(['1a', '2a']);
         });
 
@@ -116,14 +116,14 @@ describe('api', () => {
             const o = new Map();
             o.set('foo', 1);
             o.set('bar', 2);
-            const vnodes = api.i(o, (item) => item + 'a');
+            const vnodes = api.i(o, item => item + 'a');
             expect(vnodes).toEqual(['foo,1a', 'bar,2a']);
         });
 
         it('should handle proxies objects', function () {
             const array = [1, 2];
             const o = new Proxy(array, {});
-            const vnodes = api.i(o, (item) => item + 'a');
+            const vnodes = api.i(o, item => item + 'a');
             expect(vnodes).toEqual(['1a', '2a']);
         });
 

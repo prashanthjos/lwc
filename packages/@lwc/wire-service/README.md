@@ -117,7 +117,7 @@ register(getTodo, function getTodoWireAdapterFactory(eventTarget) {
     let config;
 
     // Invoked when config is updated.
-    eventTarget.addListener('config', (newConfig) => {
+    eventTarget.addListener('config', newConfig => {
         // Capture config for use during subscription.
         config = newConfig;
     });
@@ -128,11 +128,11 @@ register(getTodo, function getTodoWireAdapterFactory(eventTarget) {
         subscription = getObservable(config)
             .map(makeReadOnlyMembrane)
             .subscribe({
-                next: (data) =>
+                next: data =>
                     wiredEventTarget.dispatchEvent(
                         new ValueChangedEvent({ data, error: undefined })
                     ),
-                error: (error) =>
+                error: error =>
                     wiredEventTarget.dispatchEvent(
                         new ValueChangedEvent({ data: undefined, error })
                     ),

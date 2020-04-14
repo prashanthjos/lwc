@@ -57,8 +57,8 @@ function adoptChildNode(node: Node, fn: ShadowRootResolver, shadowToken: string 
 }
 
 function initPortalObserver() {
-    return new MutationObserver((mutations) => {
-        forEach.call(mutations, (mutation) => {
+    return new MutationObserver(mutations => {
+        forEach.call(mutations, mutation => {
             /**
              * This routine will process all nodes added or removed from elm (which is marked as a portal)
              * When adding a node to the portal element, we should add the ownership.

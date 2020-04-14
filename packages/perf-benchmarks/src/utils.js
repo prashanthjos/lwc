@@ -35,7 +35,7 @@ export function nextFrame(cb) {
 }
 
 export const insertTableComponent = function (el, container = document.body) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
         container.appendChild(el);
         nextFrame(() => {
             resolve(el);
